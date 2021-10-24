@@ -1,0 +1,26 @@
+import webbrowser
+import csv
+import pyautogui
+import time
+
+path = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s"
+exampleFile = open('orders_csv.csv')
+exampleReader = csv.reader(exampleFile)
+next(exampleReader) #skips header
+exampleData = list(exampleReader)
+
+for item in exampleData:
+    webbrowser.get(path).open(item[0])
+    time.sleep(5)
+    pyautogui.doubleClick() #move your mouse to hover over the order ID in the Chrome URL browser
+    time.sleep(1)
+    pyautogui.hotkey('ctrl', 'c')
+    time.sleep(1)
+    pyautogui.hotkey('ctrl', 'p')
+    time.sleep(2)
+    pyautogui.press('enter')
+    time.sleep(2)
+    pyautogui.hotkey('ctrl', 'v')
+    time.sleep(1)
+    pyautogui.press('enter')
+    time.sleep(1)
